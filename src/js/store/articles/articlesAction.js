@@ -4,6 +4,8 @@ export const FETCH_ARTICLE = 'FETCH_ARTICLE';
 export const FETCH_ARTICLE_SUCCESS = 'FETCH_ARTICLE_SUCCESS';
 export const ADD_ARTICLE = 'ADD_ARTICLE';
 export const ADD_ARTICLE_SUCCESS = 'ADD_ARTICLE_SUCCESS';
+export const UPDATE_ARTICLE = 'UPDATE_ARTICLE';
+export const UPDATE_ARTICLE_SUCCESS = 'UPDATE_ARTICLE_SUCCESS';
 
 export const fetchAllArticles = () => ({ type: FETCH_ALL_ARTICLES, payload: {} });
 export const fetchAllArticlesSuccess =  (articles) => {
@@ -29,6 +31,16 @@ export const createArticle = (article) => ({ type: ADD_ARTICLE, payload: {articl
 export const createArticleSuccess =  (article) => {
 	return {
 		type: ADD_ARTICLE_SUCCESS,
+		payload: {
+			article
+		}
+	}
+};
+
+export const updateArticle = (id, data) => ({ type: UPDATE_ARTICLE, payload: {id, data} });
+export const updateArticleSuccess = (article) => {
+	return {
+		type: UPDATE_ARTICLE_SUCCESS,
 		payload: {
 			article
 		}

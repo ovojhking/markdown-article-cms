@@ -3,6 +3,7 @@ import {
 	ADD_ARTICLE_SUCCESS,
 	FETCH_ALL_ARTICLES_SUCCESS,
 	FETCH_ARTICLE_SUCCESS,
+	UPDATE_ARTICLE_SUCCESS,
 } from 'Store/articles/articlesAction';
 
 const initState = {
@@ -25,6 +26,13 @@ export default function articles(state = initState, action) {
 			return {
 				...state,
 				article: action.payload.article,
+			};
+		case UPDATE_ARTICLE_SUCCESS:
+			return {
+				...state,
+				articles: state.articles.map((article) =>
+					article.id === action.payload.article.id ? action.payload.article : article
+				),
 			};
 		default:
 			return state;

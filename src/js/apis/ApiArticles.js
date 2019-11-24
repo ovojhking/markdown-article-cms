@@ -9,6 +9,10 @@ const ApiArticles = class ApiArticles {
 		const localStorageRequest = new LocalStorageRequest();
 		return localStorageRequest.post(url, data);
 	}
+	putArticle(url, data) {
+		const localStorageRequest = new LocalStorageRequest();
+		return localStorageRequest.put(url, data);
+	}
 };
 
 export default ApiArticles;

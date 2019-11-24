@@ -44,10 +44,25 @@ function* createArticle(action) {
 	}
 }
 
+function* updateArticle(action) {
+	const apiArticles = new ApiArticles();
+	const url = `${apiDomainName}/article-management/articles/${action.payload.id}`;
+
+	try {
+		const res = yield call(apiArticles.putArticle, url, action.payload.data);
+		yield put(articlesAction.updateArticleSuccess(res.data.article));
+		history.replace(`/article/${action.payload.id}/${action.payload.data.subject}`);
+	}
+	catch(error) {
+		console.log(error);
+	}
+}
+
 function* actionWatcher() {
 	yield takeLatest(articlesAction.FETCH_ALL_ARTICLES, fetchAllArticles);
 	yield takeLatest(articlesAction.FETCH_ARTICLE, fetchArticle);
 	yield takeLatest(articlesAction.ADD_ARTICLE, createArticle);
+	yield takeLatest(articlesAction.UPDATE_ARTICLE, updateArticle);
 }
 
 export default function* rootSaga() {

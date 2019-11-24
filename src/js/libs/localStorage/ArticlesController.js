@@ -22,6 +22,21 @@ const ArticlesController = class ArticlesController {
 			article: articles.find((article) => article.id === id)
 		};
 	}
+	update(id, data) {
+		let articles = JSON.parse(localStorage.getItem('articles')) || [];
+		let nextArticle = null;
+		let nextArticles = articles.map((article) => {
+			if(article.id === id){
+				nextArticle = {...article, ...data};
+				return nextArticle;
+			}
+			return article;
+		});
+		nextArticles = JSON.stringify(nextArticles);
+		localStorage.setItem('articles', nextArticles);
+
+		return {article: nextArticle};
+	}
 };
 
 export default ArticlesController;

@@ -20,6 +20,14 @@ const LocalStorageRequest = class LocalStorageRequest {
             }, 300);
         })
     }
+    put(url, data) {
+        return new Promise((resolve, reject)=>{
+            setTimeout(() => {
+                const nextData = localStorageApiHandler('put', url, data);
+                resolve({data: nextData});
+            }, 300);
+        })
+    }
 };
 
 export default LocalStorageRequest;

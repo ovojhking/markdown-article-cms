@@ -18,6 +18,13 @@ function localStorageApiHandler(type, url, data){
                 return articlesController.create(data);
             }
             break;
+        case 'put':
+            if(url.includes('/article-management/article')){
+                const path = url.split('/');
+                const id = path[path.length-1]
+                return articlesController.update(id, data);
+            }
+            break;
         default:
             break;
     }
