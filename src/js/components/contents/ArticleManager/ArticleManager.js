@@ -20,9 +20,31 @@ const ArticleManager = () => {
 		getAllArticles();
 	},[]);
 
+	const renderArticleList = () => {
+		let history = useHistory();
+		return articles.map((article)=>{
+			const imgSrc = article.coverPhoto;
+			return (
+				<div className="col-12 col-sm-6 col-lg-4 mb-3" key={`${article.id}-wrap`}>
+					<div className="card">
+						<img src={imgSrc} className="card-img-top card-height-md" alt="cover photo" key={`${article.id}-img`}/>
+						<div className="card-body">
+							<h5 className="card-title" key={`${article.id}-subject`}>{article.subject}</h5>
+							<p className="card-subtitle text-muted mb-5" key={`${article.id}-created_at`}>{`Posted on ${article.created_at}`}</p>
+							<button className="btn btn-outline-primary col-12 col-sm-3" onClick={()=>history.push(`article/${article.id}/${article.subject}`)}>詳情</button>
+						</div>
+					</div>
+				</div>
+			);
+		});
+	}
+
 	return(
 		<div>
 			<h1>ArticleManager</h1>
+			<div className="mt-3 d-flex flex-wrap align-items-center">
+				{renderArticleList()}
+			</div>
 		</div>
 	);
 };
