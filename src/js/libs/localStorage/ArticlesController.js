@@ -16,6 +16,12 @@ const ArticlesController = class ArticlesController {
 		const articles = JSON.parse(localStorage.getItem('articles')) || [];
 		return {articles};
 	}
+	read(id) {
+		const articles = JSON.parse(localStorage.getItem('articles')) || [];
+		return {
+			article: articles.find((article) => article.id === id)
+		};
+	}
 };
 
 export default ArticlesController;

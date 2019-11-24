@@ -7,6 +7,10 @@ function localStorageApiHandler(type, url, data){
         case 'get':
             if(url === '/article-management/articles'){
                 return articlesController.readAll();
+            }else if(url.includes('/article-management/article')){
+                const path = url.split('/');
+                const id = path[path.length-1]
+                return articlesController.read(id);
             }
             break;
         case 'post':

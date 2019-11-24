@@ -17,6 +17,19 @@ function* fetchAllArticles(action) {
 	}
 }
 
+function* fetchArticle(action) {
+	const apiArticles = new ApiArticles();
+	const url = `${apiDomainName}/article-management/articles/${action.payload.id}`;
+
+	try {
+		const res = yield call(apiArticles.getArticles, url);
+		yield put(articlesAction.fetchArticleSuccess(res.data.article));
+	}
+	catch(error) {
+		console.log(error);
+	}
+}
+
 function* createArticle(action) {
 	const apiArticles = new ApiArticles();
 	const url = `${apiDomainName}/article-management/article`;
@@ -33,6 +46,7 @@ function* createArticle(action) {
 
 function* actionWatcher() {
 	yield takeLatest(articlesAction.FETCH_ALL_ARTICLES, fetchAllArticles);
+	yield takeLatest(articlesAction.FETCH_ARTICLE, fetchArticle);
 	yield takeLatest(articlesAction.ADD_ARTICLE, createArticle);
 }
 
