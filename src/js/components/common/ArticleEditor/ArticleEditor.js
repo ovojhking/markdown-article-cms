@@ -19,7 +19,7 @@ const ArticleEditor = (props) => {
 	};
 	const onSubmit = () => {
 		const data = {subject, coverPhoto: filterXSS(coverPhoto), content}
-		if(validateStatus){
+		if(validateStatus && subject !== '') {
 			props.submit(data);
 		} else {
 			alert('請輸入正確格式的subject');
