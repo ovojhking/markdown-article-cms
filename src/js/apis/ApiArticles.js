@@ -5,6 +5,10 @@ const ApiArticles = class ApiArticles {
 		const localStorageRequest = new LocalStorageRequest();
 		return localStorageRequest.get(url);
 	}
+	postArticles(url, data) {
+		const localStorageRequest = new LocalStorageRequest();
+		return localStorageRequest.post(url, data);
+	}
 };
 
 export default ApiArticles;

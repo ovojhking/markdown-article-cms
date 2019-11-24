@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import {createArticle} from 'Store/articles/articlesAction';
 import ArticleEditor from 'Components/common/ArticleEditor/ArticleEditor';
 
 const ArticleCreate = () => {
+	const dispatch = useDispatch();
 	const history = useHistory();
 
 	const submit = (article) => {
-		console.log(article);
+		dispatch(createArticle(article));
 	}
 
 	const cancel = () => {

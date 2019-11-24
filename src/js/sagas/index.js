@@ -17,8 +17,23 @@ function* fetchAllArticles(action) {
 	}
 }
 
+function* createArticle(action) {
+	const apiArticles = new ApiArticles();
+	const url = `${apiDomainName}/article-management/article`;
+
+	try {
+		const res = yield call(apiArticles.postArticles, url, action.payload.article);
+		yield put(articlesAction.createArticleSuccess(res.data.article));
+		history.replace('/');
+	}
+	catch(error) {
+		console.log(error);
+	}
+}
+
 function* actionWatcher() {
 	yield takeLatest(articlesAction.FETCH_ALL_ARTICLES, fetchAllArticles);
+	yield takeLatest(articlesAction.ADD_ARTICLE, createArticle);
 }
 
 export default function* rootSaga() {

@@ -9,6 +9,11 @@ function localStorageApiHandler(type, url, data){
                 return articlesController.readAll();
             }
             break;
+        case 'post':
+            if(url === '/article-management/article'){
+                return articlesController.create(data);
+            }
+            break;
         default:
             break;
     }
