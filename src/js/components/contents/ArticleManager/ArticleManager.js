@@ -2,9 +2,10 @@ import React, {useEffect} from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllArticles } from 'Store/articles/articlesAction';
-import {runArticleSeed} from 'Seeds/generateData';
 import DateFormat from 'Libs/DateFormat';
 import {defaultCoverPhoto} from 'Configs/coverPhotos';
+import {runArticleSeed} from 'Seeds/generateData';
+import { scrollToTop } from 'Libs/scroll';
 
 const ArticleManager = () => {
 	const dispatch = useDispatch();
@@ -18,8 +19,15 @@ const ArticleManager = () => {
 
 	useEffect(() => {
 		runArticleSeed();
+		scrollToTop();
 		getAllArticles();
 	},[]);
+
+	const formatDate = (date)=>{
+		const dateFormat = new DateFormat();
+		dateFormat.init(date);
+		return dateFormat.getBritishFormat();
+	};
 
 	const renderArticleList = () => {
 		let history = useHistory();
@@ -40,15 +48,17 @@ const ArticleManager = () => {
 		});
 	}
 
-	const formatDate = (date)=>{
-		const dateFormat = new DateFormat();
-		dateFormat.init(date);
-		return dateFormat.getBritishFormat();
-	};
-
 	return(
 		<div>
-			<h1>ArticleManager</h1>
+			<div className="d-flex justify-content-between align-items-center">
+				<h1>ArticleManager</h1>
+				<Link className="d-flex align-items-center no-underline" to="/article/create">
+					<i className="fa-2x fas fa-plus-circle d-none d-block d-lg-none" />
+					<i className="fa-lg fas fa-plus-circle d-none d-lg-block" />
+					<span className="ml-2 d-none d-lg-block">新增文章</span>
+				</Link>
+			</div>
+
 			<div className="mt-3 d-flex flex-wrap align-items-center">
 				{renderArticleList()}
 			</div>
