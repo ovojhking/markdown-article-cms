@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import "codemirror/lib/codemirror.css";
+import 'codemirror/mode/markdown/markdown';
 import codemirror from 'codemirror';
 
 const CodeMirror = (props) => {
@@ -36,6 +37,12 @@ const CodeMirror = (props) => {
             />
 		</div>
 	);
+};
+
+CodeMirror.defaultProps = {
+    mode: 'markdown',
+    onValueChanged: ()=>{},
+    defaultValue: '',
 };
 
 export default CodeMirror;
