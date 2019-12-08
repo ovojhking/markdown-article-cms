@@ -6,12 +6,20 @@ Heroku首次開啟時間稍慢，需花些時間等候:
 
 [Demo](https://markdown-article-cms.herokuapp.com/) 
 
+**專案目標：**
+
+1. 使用localstorage模擬後端的資料儲存，並設計RESTful api，方便之後改用後端api
+1. 管理文章頁面： 此頁面需連結至瀏覽文章頁面與新增文章頁面。
+1. 新增文章頁面： 此頁面需可使用markdown撰寫，並需有個預覽按鈕，用以預覽markdown的執行結果。
+1. 瀏覽文章頁面： 此頁需可檢視markdown的執行結果，並需有個編輯按鈕，用以進入編輯文章頁面。
+1. 編輯文章頁面： 此頁需可編輯舊有的文章，並需有個預覽按鈕，用以預覽markdown的執行結果。
+
 **本專案包含以下內容：**
 
+1. 自製 localStorageRequest 來模擬與後端請求api的動作。
+1. 當想改用資料庫儲存時，只需將ApiArticles裡的localStorageRequest改成axios即可。（例如：localStorageRequest.get(`article/${id}`); 改成axios.get(`article/${id}`)）
 1. 有稍微調整rwd頁面，可在手機上瀏覽。
 1. 使用oocss的css設計模式規劃bootstrap與scss的使用
-1. 自製 localStorageRequest 來模擬與後端請求api的動作。
-1. 當想改用資料庫儲存時，只需將ApiArticles裡的localStorageRequest改成axios即可。
 1. 驗證格式的hoc，可以加入符合格式的各種元件，且可自由新增、刪減驗證規則，耦合性極低。
 1. 封面圖片的網址輸入欄有加上filterXSS，可以防止簡易的xss攻擊。
 1. 將third party library ( codemirror ) 改寫成react component。
