@@ -10,8 +10,8 @@ const Header = () => {
 					<img className="logo cursor-pointer" src={Logo} alt="logo"/>
 				</Link>
 				<div className="col-5 col-lg-3 d-flex justify-content-end align-items-center">
-					<a className="col-6 text-white d-flex align-items-center no-underline" href="https://gitlab.com/jhtokd/markdown-article-cms">
-						<i className="fa-lg fab fa-gitlab" />
+					<a className="col-6 text-white d-flex align-items-center no-underline" href="https://github.com/ovojhking/markdown-article-cms">
+						<i className="fa-lg fab fa-github" />
 						<span className="ml-2 d-none d-sm-block">程式碼</span>
 					</a>
 
